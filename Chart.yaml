@@ -1,0 +1,9 @@
+apiVersion: v2
+name: helm-flow-logo
+version: 1.0.0 # chart
+appVersion: 1.0.0
+description: Generate logo-sec.yaml
+type: application
+keywords:
+  - flow-logo
+

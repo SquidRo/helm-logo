@@ -1,0 +1,19 @@
+{{- $files := .Files }}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ $.Release.Name }}-sec-logo
+  namespace: {{ $.Release.Namespace }}
+data:
+{{- range $key, $value := .Files }}
+{{- if hasPrefix "logo/" $key }}
+{{- if contains "logo.svg" $key }}
+  logo.svg:
+{{- else if contains "favicon.ico" $key }}
+  favicon.ico:
+{{- end }}
+{{- ($.Files.Get $key) | b64enc | indent 4 }}
+{{- end }}
+{{- end }}
+
